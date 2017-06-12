@@ -16,5 +16,10 @@ namespace Sudoku
         {
             InitializeComponent();
         }
+        public TextBox[] plansza_sudoku;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            plansza_sudoku = new TextBox[81]; //zapisuje planszę jako tablicę
+        }
     }
 }

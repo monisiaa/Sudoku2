@@ -779,6 +779,7 @@
             this.bSprawdz.TabIndex = 82;
             this.bSprawdz.Text = "Sprawdź";
             this.bSprawdz.UseVisualStyleBackColor = true;
+            this.bSprawdz.Click += new System.EventHandler(this.bSprawdz_Click);
             // 
             // bWyczysc
             // 
@@ -879,7 +880,8 @@
             this.Controls.Add(this.t12);
             this.Controls.Add(this.t11);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sudoku";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
