@@ -118,5 +118,15 @@ namespace Sudoku
                 }
             }
         }
+
+        private void bWyczysc_Click(object sender, EventArgs e)
+        {
+            foreach (TextBox t in plansza_sudoku)
+            {
+                t.Text = "";
+                t.Enabled = true;
+                t.BackColor = Color.White; 
+            }
+        }
     }
 }
