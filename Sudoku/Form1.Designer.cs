@@ -121,6 +121,7 @@
             this.t11.Name = "t11";
             this.t11.Size = new System.Drawing.Size(32, 32);
             this.t11.TabIndex = 0;
+            this.t11.TextChanged += new System.EventHandler(this.t11_TextChanged);
             // 
             // t12
             // 

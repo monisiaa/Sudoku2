@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Sudoku
 {
@@ -20,6 +21,8 @@ namespace Sudoku
         private void Form1_Load(object sender, EventArgs e)
         {
             plansza_sudoku = new TextBox[81]; //zapisuje planszę jako tablicę
+
+#region przypisanie textbox-ow
             plansza_sudoku[0] = t11;
             plansza_sudoku[1] = t12;
             plansza_sudoku[2] = t13;
@@ -101,6 +104,19 @@ namespace Sudoku
             plansza_sudoku[78] = t97;
             plansza_sudoku[79] = t98;
             plansza_sudoku[80] = t99;
+#endregion
+        }
+
+        private void sprawdza_liczba(object sender, EventArgs e)
+        {
+            if ((sender as TextBox).Text != "")
+            {
+                if((sender as TextBox).Text[0] < '0' || (sender as TextBox).Text[9] >'9')
+                {
+                    MessageBox.Show("Można wpisac tylko cyfry.");
+                    (sender as TextBox).Clear();
+                }
+            }
         }
     }
 }
