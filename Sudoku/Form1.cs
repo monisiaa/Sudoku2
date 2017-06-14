@@ -105,14 +105,52 @@ namespace Sudoku
             plansza_sudoku[78] = t97;
             plansza_sudoku[79] = t98;
             plansza_sudoku[80] = t99;
-#endregion
+            #endregion
+            try
+            {
+                if (otworz.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamReader odczyt = new StreamReader(otworz.FileName, false))
+                    {
+                        string linia = odczyt.ReadLine();
+                        for (int i = 0; i < 81; i++)
+                        {
+                            if (linia[i] != ' ')
+                            {
+                                if (linia[i] < '0' || linia[i] > '9')
+                                {
+                                    MessageBox.Show("Nowa Gra z tą planszą jest nie możliwa.");
+                                    foreach (TextBox t in plansza_sudoku)
+                                    {
+                                        t.Text = "";
+                                        t.Enabled = true;
+                                        t.BackColor = Color.White;
+                                    }
+                                    break;
+                                }
+                                plansza_sudoku[i].Enabled = false;
+                                plansza_sudoku[i].Text = linia[i].ToString();
+                            }
+                            else
+                            {
+                                plansza_sudoku[i].Clear();
+                            }
+                        }
+                        odczyt.Close();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nie można rozpocząć nowej gry.");
+            }
         }
 
         private void sprawdza_liczba(object sender, EventArgs e)
         {
             if ((sender as TextBox).Text != "")
             {
-                if((sender as TextBox).Text[0] < '0' || (sender as TextBox).Text[9] >'9')
+                if((sender as TextBox).Text[0] < '0' || (sender as TextBox).Text[0] >'9')
                 {
                     MessageBox.Show("Można wpisac tylko cyfry.");
                     (sender as TextBox).Clear();
