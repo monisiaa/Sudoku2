@@ -112,6 +112,7 @@
             this.bNowa = new System.Windows.Forms.Button();
             this.bSprawdz = new System.Windows.Forms.Button();
             this.bWyczysc = new System.Windows.Forms.Button();
+            this.otworz = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // t11
@@ -791,6 +792,10 @@
             this.bWyczysc.Text = "Wyczyść";
             this.bWyczysc.UseVisualStyleBackColor = true;
             this.bWyczysc.Click += new System.EventHandler(this.bWyczysc_Click);
+            //
+            // otworz
+            //
+            this.otworz.FileName = "sudoku1";
             // 
             // Form1
             // 
@@ -975,6 +980,7 @@
         private System.Windows.Forms.Button bNowa;
         private System.Windows.Forms.Button bSprawdz;
         private System.Windows.Forms.Button bWyczysc;
+        private System.Windows.Forms.OpenFileDialog otworz;
     }
 }
 

@@ -18,6 +18,7 @@ namespace Sudoku
             InitializeComponent();
         }
         public TextBox[] plansza_sudoku;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             plansza_sudoku = new TextBox[81]; //zapisuje planszę jako tablicę
@@ -250,6 +251,46 @@ namespace Sudoku
                 t.Enabled = true;
                 t.BackColor = Color.White;
             } //czyści planszę
+
+            try
+            {
+                if (otworz.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamReader odczyt = new StreamReader(otworz.FileName, false))
+                    {
+                        string linia = odczyt.ReadLine();
+                        for (int i = 0; i < 81; i++)
+                        {
+                            if (linia[i] != ' ')
+                            {
+                                if (linia[i] < '0' || linia[i] > '9')
+                                {
+                                    MessageBox.Show("Nowa Gra z tą planszą jest nie możliwa.");
+                                    foreach (TextBox t in plansza_sudoku)
+                                    {
+                                        t.Text = "";
+                                        t.Enabled = true;
+                                        t.BackColor = Color.White;
+                                    }
+                                    break;
+                                }
+                                plansza_sudoku[i].Enabled = false;
+                                plansza_sudoku[i].Text = linia[i].ToString();
+                            }
+                            else
+                            {
+                                plansza_sudoku[i].Clear();
+                            }
+                        }
+                        odczyt.Close();
+                    }
+                }                
+            }
+            catch
+            {
+                MessageBox.Show("Nie można rozpocząć nowej gry.");
+            }
+
 
         }
     }
