@@ -779,6 +779,7 @@
             this.bSprawdz.TabIndex = 82;
             this.bSprawdz.Text = "Sprawdź";
             this.bSprawdz.UseVisualStyleBackColor = true;
+            this.bSprawdz.Click += new System.EventHandler(this.bSprawdz_Click);
             // 
             // bWyczysc
             // 

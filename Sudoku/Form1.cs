@@ -127,6 +127,119 @@ namespace Sudoku
                 t.Enabled = true;
                 t.BackColor = Color.White; 
             }
+        } //czyści całą planszę
+
+        private void bSprawdz_Click(object sender, EventArgs e)
+        {
+            czy_poprawnie_rozwiazane();
+        }
+
+        private int czy_pole_wypelnione() //sprawdza czy wszystkie pola sa wypełnione
+        {
+            for (int i=0; i < 81; i++)
+            {
+                if (plansza_sudoku[i].Text == "")
+                {
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
+        private void czy_poprawnie_rozwiazane()
+        {
+            if (czy_pole_wypelnione() == 1)
+            {
+                int[,] wiersze = new int[9, 9];
+                for (int i=0, pomoc; i < 9; i++)
+                {
+                    for (int l=0; l < 9; l++)
+                    {
+                        pomoc = (9 * i) + i;
+                        if (plansza_sudoku[pomoc].Text != "")
+                            {
+                                wiersze[i, l] = Convert.ToInt32(plansza_sudoku[pomoc].Text);
+                            }
+                        else
+                            {
+                                wiersze[i, l] = 0;
+                            }
+                    }
+                }
+
+                int[,] kolumny = new int[9, 9];
+                for (int i=0, pomoc; i<9; i++)
+                {
+                    for (int k=0; k<9; k++)
+                    {
+                        pomoc = (9 * i) + k;
+                        if (plansza_sudoku[pomoc].Text != "")
+                        {
+                            kolumny[i, k] = Convert.ToInt32(plansza_sudoku[pomoc].Text);
+                        }
+                        else
+                        {
+                            kolumny[i, k] = 0;
+                        }
+                    }
+                }
+
+                int[,] kwadraty = new int[9, 9];
+                for (int i=0, pomoc; i<9; i++)
+                {
+                    for (int kw=0; kw < 9; kw++)
+                    {
+                        pomoc = ((int)((i / 3) * 27)) + 3 * (i % 3) + (kw % 3) + ((int)((kw / 3) * 9));
+                        if (plansza_sudoku[pomoc].Text != "")
+                        {
+                            kwadraty[i, kw] = Convert.ToInt32(plansza_sudoku[pomoc].Text);
+                        }
+                        else
+                        {
+                            kwadraty[i, kw] = 0;
+                        }
+                    }
+                }
+
+                int[] zmienna_linie = new int[9];
+                int[] zmienna_kolumny = new int[9];
+                int[] zmienna_kwadraty = new int[9];
+                int koniec = 0;
+                for (int i=0; i<9; i++)
+                {
+                    for (int k=0; k<9; k++)
+                    {
+                        zmienna_linie[k] = wiersze[i, k];
+                        zmienna_kolumny[k] = kolumny[i, k];
+                        zmienna_kwadraty[k] = kwadraty[i, k];
+                    }
+                    //sortowanie tablic
+                    Array.Sort(zmienna_linie);
+                    Array.Sort(zmienna_kolumny);
+                    Array.Sort(zmienna_kwadraty);
+                    for (int j=0; j<9; j++)
+                    {
+                        if((zmienna_linie[j] != j+1)  || (zmienna_kolumny[j] != j+1) || (zmienna_kwadraty[j] != j+1))
+                        {
+                            MessageBox.Show("Sudoku jest źle rozwiązane!!! Popraw!!!");
+                            koniec = 1;
+                            break;
+                        }
+                        if(koniec == 1)
+                        {
+                            break;
+                        }
+                    }
+                    if (koniec != 1)
+                    {
+                        MessageBox.Show("Udało Ci się! Gratuluję Ci! Sudoku rozwiązane porawnie!!!");
+                    }         
+                }
+            }
+            else
+            {
+                MessageBox.Show("Rozwiąż Sudoku do końca i potem Sprawdź!");
+            }
         }
     }
 }
