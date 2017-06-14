@@ -770,6 +770,7 @@
             this.bNowa.TabIndex = 81;
             this.bNowa.Text = "Nowa Gra";
             this.bNowa.UseVisualStyleBackColor = true;
+            this.bNowa.Click += new System.EventHandler(this.bNowa_Click);
             // 
             // bSprawdz
             // 

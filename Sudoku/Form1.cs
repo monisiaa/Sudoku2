@@ -241,5 +241,16 @@ namespace Sudoku
                 MessageBox.Show("Rozwiąż Sudoku do końca i potem Sprawdź!");
             }
         }
+
+        private void bNowa_Click(object sender, EventArgs e)
+        {
+            foreach (TextBox t in plansza_sudoku)
+            {
+                t.Text = "";
+                t.Enabled = true;
+                t.BackColor = Color.White;
+            } //czyści planszę
+
+        }
     }
 }
